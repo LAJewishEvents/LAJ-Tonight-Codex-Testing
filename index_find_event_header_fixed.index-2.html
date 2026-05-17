@@ -210,6 +210,17 @@ h1{margin:0;font-size:52px !important;line-height:.92 !important;font-weight:900
 .network-event-link{display:inline-block;margin-top:8px;color:#6f43c2;font-size:13px;font-weight:800;text-decoration:none}
 .network-chiprow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .network-chip{padding:8px 10px;border-radius:999px;background:#eef4ff;color:#2b5aa0;font-size:11px;font-weight:800;border:1px solid #d9e5ff}
+.friend-action-btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--navy);font-size:12px;font-weight:900;padding:9px 12px;cursor:pointer;min-height:34px;text-decoration:none}
+.friend-action-btn.add{background:var(--navy);border-color:var(--navy);color:#fff}
+.friend-action-btn.accept{background:var(--green);border-color:var(--green);color:#fff}
+.friend-action-btn.sent,.friend-action-btn.friends,.friend-action-btn.self{background:#eef4ff;border-color:#d9e5ff;color:#2b5aa0;cursor:default}
+.friend-action-btn.unavailable{background:#f3f1ec;color:var(--muted);cursor:not-allowed}
+.friend-action-btn.loading{opacity:.72;cursor:wait}
+.people-going-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 14px 0;padding:10px 12px;border:1px solid var(--line);border-radius:16px;background:#faf7f1}
+.people-going-title{font-size:12px;font-weight:900;color:var(--navy);margin-right:2px}
+.people-going-person{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:var(--navy)}
+.people-going-person .profile-friend-pill-avatar{width:28px;height:28px;flex-basis:28px;font-size:12px}
+.people-going-more{font-size:12px;font-weight:900;color:var(--muted)}
 .tab small{display:block;font-size:9px;opacity:.6;line-height:1;margin-top:-2px}
 .header-copyright{margin-top:6px;font-size:10px;color:#9b8f7a;font-weight:700;letter-spacing:.02em}
 
@@ -277,12 +288,24 @@ h1{margin:0;font-size:52px !important;line-height:.92 !important;font-weight:900
 
 .profile-friends-section{margin-bottom:14px}
 .profile-friends-card{background:#faf7f1;border:1px solid var(--line);border-radius:20px;padding:14px}
-.profile-friends-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+.profile-friends-grid{display:grid;gap:10px;margin-top:12px}
 .profile-friend-pill{display:flex;align-items:center;gap:10px;background:#eef4ff;border:1px solid #d9e5ff;border-radius:999px;padding:8px 12px}
 .profile-friend-pill-avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;background:#6c8fc2;color:#fff;display:grid;place-items:center;font-weight:900;font-size:16px;flex:0 0 38px}
 .profile-friend-pill-avatar img{width:100%;height:100%;object-fit:cover}
 .profile-friend-pill-name{font-size:14px;font-weight:900;color:var(--navy)}
-.profile-friends-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.profile-accepted-friend-card{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;text-align:left;width:100%;cursor:pointer}
+.profile-accepted-friend-card:hover{background:#fffdf8}
+.profile-accepted-friend-copy{min-width:0;flex:1}
+.profile-accepted-friend-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px}
+.profile-accepted-friend-name{font-size:15px;font-weight:900;color:var(--navy);margin:0}
+.profile-accepted-friend-badge{display:inline-flex;align-items:center;border-radius:999px;background:#eef4ff;color:#2b5aa0;font-size:11px;font-weight:900;padding:4px 8px}
+.profile-accepted-friend-meta{font-size:12px;color:var(--muted);margin:0 0 5px;line-height:1.35}
+.profile-accepted-friend-bio{font-size:13px;color:var(--text);margin:0;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.friend-profile-modal-head{display:flex;gap:12px;align-items:flex-start;margin:4px 0 14px}
+.friend-profile-modal-name{font-size:22px;font-weight:900;color:var(--navy);margin:0 0 4px}
+.friend-profile-modal-meta{font-size:13px;color:var(--muted);margin:0}
+.friend-profile-modal-bio{font-size:14px;color:var(--text);line-height:1.45;margin:12px 0 0}
+.profile-friends-stats{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:14px}
 .profile-friends-stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 10px;text-align:center}
 .profile-friends-stat-num{font-size:22px;font-weight:900;color:#6f44d9;line-height:1}
 .profile-friends-stat-label{font-size:12px;color:var(--muted);font-weight:800;margin-top:6px}
@@ -700,6 +723,17 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
 .notif-bell{position:relative;width:36px;height:36px;border-radius:12px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:18px;cursor:pointer;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .notif-dot{position:absolute;top:5px;right:5px;width:8px;height:8px;border-radius:50%;background:#e63946;border:1.5px solid #fff;display:none}
 .notif-dot.visible{display:block}
+.notif-dot.has-count{top:-5px;right:-5px;width:auto;height:18px;min-width:18px;padding:0 5px;border-radius:999px;font-size:10px;font-weight:900;line-height:18px;color:#fff;text-align:center}
+.friend-notification-wrap{position:relative;display:flex;align-items:center;flex-shrink:0}
+.friend-notification-panel{position:absolute;right:0;top:44px;width:min(330px,calc(100vw - 32px));background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 18px 44px rgba(16,50,82,.18);z-index:90;padding:12px;display:none;color:var(--text)}
+.friend-notification-panel.open{display:block}
+.friend-notification-title{font-size:16px;font-weight:900;color:var(--navy);margin:0 0 8px}
+.friend-notification-list{display:grid;gap:10px;max-height:360px;overflow:auto}
+.friend-notification-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:10px;background:#faf7f1}
+.friend-notification-copy{flex:1;min-width:0}
+.friend-notification-copy h4{margin:0 0 3px;font-size:13px;color:var(--navy)}
+.friend-notification-copy p{margin:0;color:var(--muted);font-size:12px;line-height:1.35}
+.friend-notification-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 
 
 .checkin-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;background:#fff;border-bottom:1px solid var(--line)}
@@ -2303,9 +2337,12 @@ body.lajt-agenda-home #feedView > .feed-section{display:none!important}
           <div class="brand-eyebrow">Jewish LA · Live Platform</div>
           <div class="brand-name">Tonight in <span class="brand-accent">Jewish&nbsp;LA</span></div>
         </div>
-        <button class="notif-bell" onclick="showProfileView()" aria-label="Profile &amp; notifications">
-          🔔<div class="notif-dot" id="notifDot"></div>
-        </button>
+        <div class="friend-notification-wrap">
+          <button class="notif-bell" onclick="return toggleFriendNotificationPanel(event)" aria-label="Friend notifications" aria-expanded="false">
+            🔔<div class="notif-dot" id="notifDot"></div>
+          </button>
+          <div class="friend-notification-panel" id="friendNotificationPanel" aria-live="polite"></div>
+        </div>
       </div>
 
       <!-- Live traction strip — what UCLA wants to see above the fold -->
@@ -2620,6 +2657,16 @@ body.lajt-agenda-home #feedView > .feed-section{display:none!important}
   </div>
 </div>
 
+<div class="modal-overlay" id="friendProfileModalOverlay" onclick="closeFriendProfileModal(event)">
+  <div class="modal-sheet" id="friendProfileModalSheet" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px;">
+      <h2 style="margin:0;color:var(--navy);font-size:20px;">Friend profile</h2>
+      <button class="modal-close" onclick="closeFriendProfileModal()" aria-label="Close friend profile">Close</button>
+    </div>
+    <div id="friendProfileModalBody"></div>
+  </div>
+</div>
+
 <div class="gate-pop" id="gatePop">
   <h3>Create a profile first</h3>
   <p>Save a profile to RSVP, like events, and join the comment thread.</p>
@@ -2894,6 +2941,9 @@ let feedEvents = [];
 let tonightEventsCache = [];
 let thisWeekEventsCache = [];
 let countsByEvent = {};
+let eventAttendeesByEvent = {};
+let eventAttendeesRequests = {};
+let eventAttendeesUnavailable = false;
 let profilesById = {};
 let currentProfile = null;
 let userRsvpEventIds = new Set();
@@ -3506,6 +3556,89 @@ function latestCommentForEvent(event){
   return `<div class="comment">“Looks like a strong crowd for this one.” · LiveFeed preview.</div>`;
 }
 
+function schedulePeopleGoingRefresh(){
+  clearTimeout(schedulePeopleGoingRefresh._t);
+  schedulePeopleGoingRefresh._t = setTimeout(function(){
+    try{
+      const feedView = document.getElementById("feedView");
+      const feed = document.getElementById("feed");
+      if (!feed || (feedView && feedView.classList.contains("hidden"))) return;
+      renderFeed(getVisibleEvents(document.getElementById("searchInput")?.value || ""));
+    }catch(err){}
+  }, 120);
+}
+function normalizeEventAttendeeRow(row){
+  const profileId = String(row?.profile_id || row?.id || "");
+  const profile = profilesById[profileId] || {};
+  return {
+    id: profileId,
+    name: row?.name || row?.display_name || profile.name || "Friend",
+    photo_url: row?.photo_url || profile.photo_url || "",
+    neighborhood: row?.neighborhood || profile.neighborhood || ""
+  };
+}
+function requestEventAttendees(eventId){
+  const key = String(eventId || "");
+  if (!key || eventAttendeesUnavailable || eventAttendeesByEvent[key] || eventAttendeesRequests[key]) return;
+  eventAttendeesRequests[key] = true;
+  try{
+    const url = new URL(`${SUPABASE_URL}/rest/v1/event_attendees`);
+    url.searchParams.set("select", "event_id,profile_id,name,photo_url,neighborhood");
+    url.searchParams.append("event_id", `eq.${key}`);
+    url.searchParams.set("limit", "4");
+    fetch(url.toString(), { headers:{ apikey:SUPABASE_KEY, Accept:"application/json", Prefer:"count=exact" } })
+      .then(async function(resp){
+        if (!resp.ok) {
+          if (resp.status === 404 || resp.status === 400) eventAttendeesUnavailable = true;
+          return null;
+        }
+        const rows = await resp.json().catch(function(){ return []; });
+        const range = resp.headers.get("content-range") || "";
+        const totalMatch = range.match(/\/(\d+)$/);
+        const total = totalMatch ? Number(totalMatch[1] || 0) : (Array.isArray(rows) ? rows.length : 0);
+        eventAttendeesByEvent[key] = { rows:Array.isArray(rows) ? rows : [], total };
+        if (total > 0) schedulePeopleGoingRefresh();
+      })
+      .catch(function(){});
+  }catch(err){}
+}
+function fallbackPeopleGoingData(eventId){
+  const key = String(eventId || "");
+  const base = countsByEvent[key] || { rsvps:0, profileIds:[] };
+  const ids = Array.from(new Set((base.profileIds || []).map(String).filter(Boolean)));
+  const me = String(currentProfile?.id || "");
+  const otherIds = ids.filter(id => id && id !== me);
+  const people = otherIds.map(id => profilesById[String(id)]).filter(Boolean);
+  const total = Math.max(otherIds.length, Number(base.rsvps || 0) - (ids.includes(me) ? 1 : 0));
+  return { people, total };
+}
+function peopleGoingHtml(eventId){
+  try{
+    const key = String(eventId || "");
+    requestEventAttendees(key);
+    const fromView = eventAttendeesByEvent[key];
+    const me = String(currentProfile?.id || "");
+    const sourcePeople = fromView
+      ? (fromView.rows || []).map(normalizeEventAttendeeRow).filter(profile => profile.id && profile.id !== me)
+      : fallbackPeopleGoingData(key).people;
+    const fallback = fallbackPeopleGoingData(key);
+    const totalGoing = fromView ? Math.max(0, Number(fromView.total || sourcePeople.length) - ((fromView.rows || []).some(row => String(row.profile_id || row.id || "") === me) ? 1 : 0)) : fallback.total;
+    if (!sourcePeople.length && totalGoing <= 0) return "";
+    const visible = sourcePeople.slice(0, 3);
+    const more = Math.max(0, totalGoing - visible.length);
+    return `<div class="people-going-row" onclick="event.stopPropagation()">
+      <div class="people-going-title">People going</div>
+      ${visible.map(profile => {
+        const firstName = String(profile.name || "Friend").trim().split(/\s+/)[0] || profile.name || "Friend";
+        return `<div class="people-going-person">${profileFriendAvatarMarkup(profile)}<span>${escapeHtml(firstName)}</span>${renderFriendActionButton(profile.id)}</div>`;
+      }).join("")}
+      ${more ? `<div class="people-going-more">+${more} ${visible.length ? "more " : ""}going</div>` : ``}
+    </div>`;
+  }catch(err){
+    return "";
+  }
+}
+
 
 function getAllUpcomingEventsForMap(){
   // Return ALL loaded events so the map always shows 50+ pins
@@ -3599,55 +3732,169 @@ function profileFriendAvatarMarkup(profile){
     : `<div class="profile-friend-pill-avatar">${escapeHtml(getInitials(name))}</div>`;
 }
 
-function renderProfileFriendsCircleCard(){
-  const mount = document.getElementById("profileFriendsCircleCard");
-  if (!mount || !currentProfile) return;
-  const friends = getAcceptedFriendProfilesForCurrentProfile();
-  const friendCount = Number(friendCountsByProfile[String(currentProfile.id || "")] || friends.length || 0);
-  if (!friendCount){
-    mount.innerHTML = "";
-    return;
-  }
-  const visible = friends.slice(0, 6);
-  const mutuals = Math.max(0, Math.min(friendCount - 1, 2));
-  mount.innerHTML = `
-    <div class="profile-friends-section">
-      <div class="dashboard-header" style="margin-bottom:10px;">
-        <h3>Friends</h3>
-        
-      </div>
-      <div class="profile-friends-card">
-        <div style="font-size:18px;font-weight:900;color:var(--navy);margin-bottom:6px;">Friends (${friendCount})</div>
-        <div class="profile-sub" style="margin-bottom:0;">Each profile gets a dedicated Friends section with profile circles, mutual friend count, and a View all friends path.</div>
-        <div class="profile-friends-grid">
-          ${visible.map(friend => `
-            <div class="profile-friend-pill">
-              ${profileFriendAvatarMarkup(friend)}
-              <div class="profile-friend-pill-name">${escapeHtml(friend.name || "Friend")}</div>
-            </div>
-          `).join("")}
-        </div>
-        <div class="profile-friends-stats">
-          <div class="profile-friends-stat">
-            <div class="profile-friends-stat-num">${friendCount}</div>
-            <div class="profile-friends-stat-label">Friends</div>
-          </div>
-          <div class="profile-friends-stat">
-            <div class="profile-friends-stat-num">${mutuals}</div>
-            <div class="profile-friends-stat-label">Mutuals</div>
-          </div>
-          <div class="profile-friends-stat">
-            <div class="profile-friends-stat-num">10</div>
-            <div class="profile-friends-stat-label">Unlock goal</div>
-          </div>
-        </div>
-        <div class="profile-friends-actions">
-          <a href="#" class="profile-friends-btn primary" onclick="return false;">See all friends</a>
-          <a href="#" class="profile-friends-btn secondary" onclick="showTonightView(); return false;">Invite Friends</a>
+let _friendsSectionRenderSeq = 0;
+let profileFriendsModalProfiles = {};
+
+function friendProfileRowHtml(profile, subText, actionsHtml){
+  const name = profile?.name || "Friend";
+  const sub = subText || profile?.neighborhood || "Los Angeles";
+  return `
+    <div class="network-item" style="margin-top:10px;">
+      <div class="network-row">
+        ${profileFriendAvatarMarkup(profile)}
+        <div class="network-copy">
+          <h4>${escapeHtml(name)}</h4>
+          <p>${escapeHtml(sub)}</p>
+          ${actionsHtml ? `<div class="network-chiprow">${actionsHtml}</div>` : ``}
         </div>
       </div>
     </div>`;
 }
+
+function truncateFriendBio(bio){
+  const text = String(bio || "").trim();
+  return text.length > 140 ? text.slice(0, 137).trim() + "…" : text;
+}
+
+function profileAcceptedFriendCardHtml(friend){
+  const name = friend?.name || "Friend";
+  const neighborhood = friend?.neighborhood || "";
+  const bio = truncateFriendBio(friend?.bio || "");
+  return `
+    <button type="button" class="profile-accepted-friend-card" onclick="return openFriendProfileModal('${escapeHtml(String(friend?.id || ''))}')">
+      ${profileFriendAvatarMarkup(friend)}
+      <div class="profile-accepted-friend-copy">
+        <div class="profile-accepted-friend-head">
+          <h4 class="profile-accepted-friend-name">${escapeHtml(name)}</h4>
+          <span class="profile-accepted-friend-badge">Friends</span>
+        </div>
+        ${neighborhood ? `<p class="profile-accepted-friend-meta">${escapeHtml(neighborhood)}</p>` : ``}
+        ${bio ? `<p class="profile-accepted-friend-bio">${escapeHtml(bio)}</p>` : ``}
+      </div>
+    </button>`;
+}
+
+function publicFriendProfileById(profileId){
+  const id = normalizeFriendUuid(profileId);
+  if (!id) return null;
+  return profileFriendsModalProfiles[id] || getAcceptedFriendProfilesForCurrentProfile().find(friend => String(friend.id || "") === id) || null;
+}
+
+function openFriendProfileModal(profileId){
+  const friend = publicFriendProfileById(profileId);
+  const overlay = document.getElementById("friendProfileModalOverlay");
+  const body = document.getElementById("friendProfileModalBody");
+  if (!friend || !overlay || !body) return false;
+  const name = friend.name || "Friend";
+  const neighborhood = friend.neighborhood || "";
+  const bio = String(friend.bio || "").trim();
+  body.innerHTML = `
+    <div class="friend-profile-modal-head">
+      ${profileFriendAvatarMarkup(friend)}
+      <div>
+        <h3 class="friend-profile-modal-name">${escapeHtml(name)}</h3>
+        ${neighborhood ? `<p class="friend-profile-modal-meta">${escapeHtml(neighborhood)}</p>` : ``}
+        <div class="network-chiprow" style="margin-top:8px;"><span class="friend-action-btn friends">Friends</span></div>
+      </div>
+    </div>
+    ${bio ? `<p class="friend-profile-modal-bio">${escapeHtml(bio)}</p>` : `<p class="friend-profile-modal-meta">No public bio yet.</p>`}`;
+  overlay.style.display = "flex";
+  document.body.classList.add("modal-open");
+  return false;
+}
+
+function closeFriendProfileModal(ev){
+  const overlay = document.getElementById("friendProfileModalOverlay");
+  if (!overlay) return false;
+  if (!ev || ev.target === overlay){
+    overlay.style.display = "none";
+    document.body.classList.remove("modal-open");
+  }
+  return false;
+}
+
+function renderFriendsRequestsPanel(data){
+  const friends = data?.friends || [];
+  profileFriendsModalProfiles = Object.fromEntries(friends.filter(friend => normalizeFriendUuid(friend?.id)).map(friend => [String(friend.id), friend]));
+  const friendCount = Number(data?.friendCount || friends.length || 0);
+  const empty = `Add friends to see who’s going, save plans together, and unlock your Jewish LA social layer.`;
+  const friendsHtml = friends.length ? `<div class="profile-friends-grid">${friends.map(profileAcceptedFriendCardHtml).join("")}</div>` : "";
+  return `
+    <div class="profile-friends-section">
+      <div class="dashboard-header" style="margin-bottom:10px;">
+        <h3>Friends</h3>
+      </div>
+      <div class="profile-friends-card">
+        <div class="profile-friends-stats" style="margin-top:0;">
+          <div class="profile-friends-stat">
+            <div class="profile-friends-stat-num">${friendCount}</div>
+            <div class="profile-friends-stat-label">Friends</div>
+          </div>
+        </div>
+        ${data?.loading ? `<div class="small-note" style="margin-top:12px;">Loading friends…</div>` : ``}
+        ${data?.error ? `<div class="small-note" style="margin-top:12px;">Friends are temporarily unavailable.</div>` : ``}
+        ${friends.length ? friendsHtml : (!data?.loading && !data?.error ? `<div class="pending-request-empty" style="margin-top:14px;line-height:1.45;">${escapeHtml(empty)}</div>` : ``)}
+      </div>
+    </div>`;
+}
+
+function cachedFriendsRequestsData(){
+  const friends = getAcceptedFriendProfilesForCurrentProfile();
+  return {
+    friends,
+    friendCount:Number(friendCountsByProfile[String(currentProfile?.id || "")] || friends.length || 0)
+  };
+}
+
+function renderProfileFriendsCircleCard(){
+  const mount = document.getElementById("profileFriendsCircleCard");
+  if (!mount || !currentProfile?.id) return;
+  const profileId = currentProfile.id;
+  const renderSeq = ++_friendsSectionRenderSeq;
+  mount.innerHTML = renderFriendsRequestsPanel(Object.assign(cachedFriendsRequestsData(), { loading:true }));
+  Promise.allSettled([
+    getFriends(profileId),
+    getFriendCount(profileId)
+  ]).then(results => {
+    if (renderSeq !== _friendsSectionRenderSeq || !currentProfile || String(currentProfile.id) !== String(profileId)) return;
+    const cached = cachedFriendsRequestsData();
+    const friendsRes = results[0].status === "fulfilled" ? results[0].value : null;
+    const countRes = results[1].status === "fulfilled" ? results[1].value : null;
+    const friends = friendsRes?.ok ? (friendsRes.data || []) : cached.friends;
+    mount.innerHTML = renderFriendsRequestsPanel({
+      friends,
+      friendCount:countRes?.ok ? Number(countRes.data.friend_count || friends.length || 0) : friends.length,
+      error:!!(friendsRes && !friendsRes.ok)
+    });
+  }).catch(() => {
+    if (renderSeq === _friendsSectionRenderSeq) mount.innerHTML = renderFriendsRequestsPanel({ friends:[], friendCount:0, error:true });
+  });
+}
+
+async function handleFriendRequestPanelAction(action, requestId, btn){
+  if (btn){
+    btn.disabled = true;
+    btn.classList.add("loading");
+    btn.textContent = "Loading…";
+  }
+  const result = action === "decline" ? await declineFriendRequest(requestId) : await cancelFriendRequest(requestId);
+  if (result?.ok){
+    await loadFriendBackendData();
+    renderProfileFriendsCircleCard();
+    renderNetworkTab();
+    if (typeof refreshNotifDot === "function") refreshNotifDot();
+    if (typeof showToast === "function") showToast(action === "decline" ? "Request declined" : "Request canceled");
+  } else {
+    if (btn){
+      btn.disabled = false;
+      btn.classList.remove("loading");
+      btn.textContent = action === "decline" ? "Decline" : "Cancel";
+    }
+    if (typeof showToast === "function") showToast("Friend action unavailable");
+  }
+  return false;
+}
+
 
 function renderProfilePendingRequestsCard(){
   const mount = document.getElementById("profilePendingRequestsCard");
@@ -3676,7 +3923,7 @@ function renderProfilePendingRequestsCard(){
           <div class="pending-request-name">${escapeHtml(senderName)} wants to connect</div>
           <p class="pending-request-sub">Accept to add them to your network.</p>
           <div class="pending-request-actions">
-            <button class="pending-request-btn accept" onclick="return acceptFriendRequestFromProfile('${escapeHtml(String(req.id || ""))}')">Accept</button>
+            ${renderFriendActionButton(req.from_profile_id, { state:"incoming_pending", request_id:req.id || "" })}
           </div>
         </div>
       </div>
@@ -3720,11 +3967,79 @@ function renderProfileDashboard(){
   recTitle.textContent = `Recommended near ${currentProfile.neighborhood || "you"}`;
   recEl.innerHTML = rec.length ? rec.map(profileEventHtml).join("") : `<div class="empty">Add your neighborhood to personalize this section.</div>`;
 }
+function friendNotificationCount(){
+  return currentProfile?.id ? getPendingIncomingFriendRequests().length : 0;
+}
 function refreshNotifDot(){
   var dot = document.getElementById('notifDot');
   if(!dot) return;
-  var hasPending = (getPendingIncomingFriendRequests&&getPendingIncomingFriendRequests().length>0);
-  dot.classList.toggle('visible', hasPending);
+  var count = friendNotificationCount();
+  dot.textContent = count > 9 ? '9+' : (count ? String(count) : '');
+  dot.classList.toggle('visible', count > 0);
+  dot.classList.toggle('has-count', count > 0);
+}
+function closeFriendNotificationPanel(){
+  const panel = document.getElementById('friendNotificationPanel');
+  const btn = document.querySelector('.friend-notification-wrap .notif-bell');
+  if (panel) panel.classList.remove('open');
+  if (btn) btn.setAttribute('aria-expanded','false');
+}
+function renderFriendNotificationPanel(){
+  const panel = document.getElementById('friendNotificationPanel');
+  if (!panel) return;
+  if (!currentProfile?.id){
+    panel.innerHTML = '<h3 class="friend-notification-title">Notifications</h3><div class="pending-request-empty">Create a profile to see friend activity.</div>';
+    return;
+  }
+  const incoming = getPendingIncomingFriendRequests();
+  if (!incoming.length){
+    panel.innerHTML = '<h3 class="friend-notification-title">Notifications</h3><div class="pending-request-empty">No pending friend requests.</div>';
+    return;
+  }
+  panel.innerHTML = '<h3 class="friend-notification-title">Notifications</h3><div class="friend-notification-list">'
+    + incoming.map(req => {
+      const profile = profilesById[String(req.from_profile_id)] || { id:req.from_profile_id, name:'Someone' };
+      return '<div class="friend-notification-item">'
+        + profileFriendAvatarMarkup(profile)
+        + '<div class="friend-notification-copy"><h4>'+escapeHtml((profile.name || 'Someone') + ' sent you a friend request')+'</h4>'
+        + '<p>'+escapeHtml(profile.neighborhood || 'Jewish LA')+'</p>'
+        + '<div class="friend-notification-actions">'
+        + '<button type="button" class="friend-action-btn accept" onclick="return handleFriendBellAction(\'accept\',\''+escapeHtml(String(req.id || ''))+'\',this)">Accept</button>'
+        + '<button type="button" class="friend-action-btn unavailable" onclick="return handleFriendBellAction(\'decline\',\''+escapeHtml(String(req.id || ''))+'\',this)">Decline</button>'
+        + '</div></div></div>';
+    }).join('')
+    + '</div>';
+}
+function toggleFriendNotificationPanel(ev){
+  if (ev && ev.stopPropagation) ev.stopPropagation();
+  const panel = document.getElementById('friendNotificationPanel');
+  const btn = ev && ev.currentTarget;
+  if (!panel) return false;
+  const willOpen = !panel.classList.contains('open');
+  if (!willOpen){ closeFriendNotificationPanel(); return false; }
+  loadFriendBackendData().catch(function(){}).finally(function(){
+    renderFriendNotificationPanel();
+    panel.classList.add('open');
+    if (btn) btn.setAttribute('aria-expanded','true');
+    refreshNotifDot();
+  });
+  return false;
+}
+async function handleFriendBellAction(action, requestId, btn){
+  if (btn){ btn.disabled = true; btn.classList.add('loading'); btn.textContent = 'Loading…'; }
+  const result = action === 'accept' ? await acceptFriendRequest(requestId) : await declineFriendRequest(requestId);
+  if (result?.ok){
+    await loadFriendBackendData();
+    renderFriendNotificationPanel();
+    renderProfileFriendsCircleCard();
+    renderNetworkTab();
+    refreshNotifDot();
+    if (typeof showToast === 'function') showToast(action === 'accept' ? 'Friend added' : 'Request declined');
+  } else {
+    if (btn){ btn.disabled = false; btn.classList.remove('loading'); btn.textContent = action === 'accept' ? 'Accept' : 'Decline'; }
+    if (typeof showToast === 'function') showToast('Friend action unavailable');
+  }
+  return false;
 }
 function refreshProfileUI(){
   const p = currentProfile;
@@ -4241,6 +4556,7 @@ function eventCard(event){
 ${renderCardMapPreview(event, mapsUrl)}
     ${urgencySignals.length ? `<div class="urgency-row">${urgencySignals.map(s=>`<span class="urgency-pill ${s.cls}">${s.icon} ${escapeHtml(s.text)}</span>`).join('')}</div>` : ''}
     <div class="vibe-row">${vibeChips.map(chip => `<div class="vibe-chip">${escapeHtml(chip)}</div>`).join("")}</div>
+    ${peopleGoingHtml(event.id)}
     ${getSocialProofBanner(event, info)}
     ${(function(){var cd=getCountdownText(event);return cd?'<div class="countdown-wrap"><div class="countdown-pill"><span class="cd-dot"></span>'+cd+'</div></div>':''})()}
     <div class="socialbar">
@@ -4710,6 +5026,309 @@ function getFriendBackendSummary(){
   };
 }
 
+/* ═══════════════════════════════════════════════
+   FRIEND SERVICE LAYER — schema-compatible helpers
+   These helpers are intentionally UI-free. DevTools examples:
+   await getFriendState(currentProfile.id, '<target-profile-uuid>')
+   await sendFriendRequest(currentProfile.id, '<target-profile-uuid>')
+   await acceptFriendRequest('<friend-request-uuid>')
+   await declineFriendRequest('<friend-request-uuid>')
+   await cancelFriendRequest('<friend-request-uuid>')
+   await getPendingFriendRequests(currentProfile.id)
+   await getFriends(currentProfile.id)
+   await getFriendCount(currentProfile.id)
+   ═══════════════════════════════════════════════ */
+function friendServiceResult(ok, data, extra){
+  return Object.assign(ok ? { ok:true, data:data ?? null } : { ok:false, error:data || "Friend service unavailable", state:"error" }, extra || {});
+}
+function friendServiceError(err, state){
+  return { ok:false, error:String(err && (err.message || err.error || err) || "Friend service unavailable"), state:state || "error" };
+}
+function normalizeFriendUuid(value){
+  const id = String(value || "").trim();
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id) ? id : "";
+}
+function canonicalFriendPair(a, b){
+  const aa = normalizeFriendUuid(a);
+  const bb = normalizeFriendUuid(b);
+  if (!aa || !bb) return null;
+  return aa < bb ? { user_a:aa, user_b:bb } : { user_a:bb, user_b:aa };
+}
+function friendStateFromRpcState(state){
+  const raw = String(state || "");
+  if (raw === "friends" || raw === "accepted" || raw === "accepted_incoming") return "friends";
+  if (raw === "created" || raw === "outgoing_pending") return "outgoing_pending";
+  if (raw === "incoming_pending") return "incoming_pending";
+  return raw || "none";
+}
+function friendRestHeaders(extra){
+  return Object.assign({ apikey:SUPABASE_KEY, Accept:"application/json" }, extra || {});
+}
+async function friendRestJson(path, options){
+  const resp = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, Object.assign({ headers:friendRestHeaders() }, options || {}));
+  let data = null;
+  try{ data = await resp.json(); }catch(_){ data = null; }
+  if (!resp.ok){
+    const err = new Error((data && (data.message || data.error)) || `HTTP ${resp.status}`);
+    err.status = resp.status;
+    err.details = data;
+    throw err;
+  }
+  return data;
+}
+async function friendFetchProfilesByIds(ids){
+  const clean = Array.from(new Set((ids || []).map(normalizeFriendUuid).filter(Boolean)));
+  if (!clean.length) return {};
+  const rows = await friendRestJson(`profiles?select=id,name,photo_url,neighborhood,bio&id=in.(${clean.join(",")})`);
+  return Object.fromEntries((Array.isArray(rows) ? rows : []).map(p => [String(p.id), p]));
+}
+async function getFriendState(currentProfileId, targetProfileId){
+  const currentId = normalizeFriendUuid(currentProfileId);
+  const targetId = normalizeFriendUuid(targetProfileId);
+  if (!currentId || !targetId) return friendServiceError("Valid current and target profile ids are required", "error");
+  if (currentId === targetId) return friendServiceResult(true, { state:"self" }, { state:"self" });
+  const pair = canonicalFriendPair(currentId, targetId);
+  try{
+    const friendships = await friendRestJson(`accepted_friendships?select=user_a,user_b,created_at&user_a=eq.${pair.user_a}&user_b=eq.${pair.user_b}&limit=1`);
+    if (Array.isArray(friendships) && friendships.length){
+      return friendServiceResult(true, { state:"friends", friendship:friendships[0] }, { state:"friends" });
+    }
+    const [outgoing, incoming] = await Promise.all([
+      friendRestJson(`friend_requests?select=id,from_profile_id,to_profile_id,status,created_at,updated_at&from_profile_id=eq.${currentId}&to_profile_id=eq.${targetId}&status=eq.pending&limit=1`),
+      friendRestJson(`friend_requests?select=id,from_profile_id,to_profile_id,status,created_at,updated_at&from_profile_id=eq.${targetId}&to_profile_id=eq.${currentId}&status=eq.pending&limit=1`)
+    ]);
+    if (Array.isArray(outgoing) && outgoing.length){
+      return friendServiceResult(true, { state:"outgoing_pending", request:outgoing[0], request_id:outgoing[0].id }, { state:"outgoing_pending" });
+    }
+    if (Array.isArray(incoming) && incoming.length){
+      return friendServiceResult(true, { state:"incoming_pending", request:incoming[0], request_id:incoming[0].id }, { state:"incoming_pending" });
+    }
+    return friendServiceResult(true, { state:"none" }, { state:"none" });
+  }catch(err){
+    return friendServiceError(err, (err && (err.status === 0 || err.name === "TypeError")) ? "unavailable" : "error");
+  }
+}
+async function callFriendRpc(name, body){
+  const client = await ensureSupabaseClient().catch(() => null);
+  if (client?.rpc){
+    try{
+      const { data, error } = await client.rpc(name, body || {});
+      if (error) throw error;
+      return data;
+    }catch(err){
+      if (!/function|schema cache|not found|404|PGRST202/i.test(String(err && (err.message || err)))) throw err;
+    }
+  }
+  const resp = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`, {
+    method:"POST",
+    headers:friendRestHeaders({ "Content-Type":"application/json" }),
+    body:JSON.stringify(body || {})
+  });
+  const data = await resp.json().catch(() => null);
+  if (!resp.ok){
+    const err = new Error((data && (data.message || data.error)) || `RPC ${name} failed`);
+    err.status = resp.status;
+    err.details = data;
+    throw err;
+  }
+  return data;
+}
+function firstFriendRpcRow(data){
+  return Array.isArray(data) ? (data[0] || null) : (data || null);
+}
+async function sendFriendRequest(currentProfileId, targetProfileId){
+  const currentId = normalizeFriendUuid(currentProfileId);
+  const targetId = normalizeFriendUuid(targetProfileId);
+  if (!currentId || !targetId) return friendServiceError("Valid current and target profile ids are required", "error");
+  if (currentId === targetId) return friendServiceResult(false, "Cannot send a friend request to yourself", { state:"self" });
+  try{
+    const rpcData = await callFriendRpc("send_friend_request", { p_from_profile_id:currentId, p_to_profile_id:targetId });
+    const row = firstFriendRpcRow(rpcData) || {};
+    const state = friendStateFromRpcState(row.state || row.status);
+    return friendServiceResult(true, Object.assign({}, row, { state, request_id:row.request_id || row.id || null }), { state });
+  }catch(rpcErr){
+    const before = await getFriendState(currentId, targetId);
+    if (!before.ok) return before;
+    if (before.state !== "none") return before;
+    try{
+      const rows = await friendRestJson("friend_requests?select=id,from_profile_id,to_profile_id,status,created_at,updated_at", {
+        method:"POST",
+        headers:friendRestHeaders({ "Content-Type":"application/json", Prefer:"return=representation" }),
+        body:JSON.stringify({ from_profile_id:currentId, to_profile_id:targetId, status:"pending" })
+      });
+      const row = Array.isArray(rows) ? rows[0] : rows;
+      return friendServiceResult(true, { state:"outgoing_pending", request:row, request_id:row?.id || null, rpc_error:String(rpcErr && (rpcErr.message || rpcErr) || "") }, { state:"outgoing_pending" });
+    }catch(insertErr){
+      return friendServiceError(insertErr, "error");
+    }
+  }
+}
+async function acceptFriendRequest(requestId){
+  const id = normalizeFriendUuid(requestId);
+  if (!id) return friendServiceError("Valid request id is required", "error");
+  try{
+    const rpcData = await callFriendRpc("accept_friend_request", { p_request_id:id });
+    const row = firstFriendRpcRow(rpcData) || {};
+    const ok = row.success !== false;
+    return ok
+      ? friendServiceResult(true, Object.assign({}, row, { state:"friends", request_id:row.request_id || id }), { state:"friends" })
+      : friendServiceResult(false, row.state || "Friend request was not accepted", { state:row.state || "error", data:row });
+  }catch(err){
+    return friendServiceError(err, "error");
+  }
+}
+async function updateFriendRequestStatus(requestId, status){
+  const id = normalizeFriendUuid(requestId);
+  if (!id) return friendServiceError("Valid request id is required", "error");
+  if (!["declined", "canceled"].includes(status)) return friendServiceError("Unsupported friend request status", "error");
+  const rpcName = status === "declined" ? "decline_friend_request" : "cancel_friend_request";
+  try{
+    const rpcData = await callFriendRpc(rpcName, { p_request_id:id });
+    const rpcRow = firstFriendRpcRow(rpcData) || {};
+    if (rpcRow.success === false) {
+      return friendServiceResult(false, rpcRow.state || "Friend request was not updated", { state:rpcRow.state || "error", data:rpcRow });
+    }
+    return friendServiceResult(true, Object.assign({}, rpcRow, { state:status, request_id:rpcRow.request_id || id }), { state:status });
+  }catch(rpcErr){
+    try{
+      const rows = await friendRestJson(`friend_requests?id=eq.${id}&select=id,from_profile_id,to_profile_id,status,created_at,updated_at`, {
+        method:"PATCH",
+        headers:friendRestHeaders({ "Content-Type":"application/json", Prefer:"return=representation" }),
+        body:JSON.stringify({ status })
+      });
+      const row = Array.isArray(rows) ? rows[0] : rows;
+      return friendServiceResult(true, { state:status, request:row, request_id:row?.id || id, rpc_error:String(rpcErr && (rpcErr.message || rpcErr) || "") }, { state:status });
+    }catch(err){
+      return friendServiceError(err, "error");
+    }
+  }
+}
+async function declineFriendRequest(requestId){
+  return updateFriendRequestStatus(requestId, "declined");
+}
+async function cancelFriendRequest(requestId){
+  return updateFriendRequestStatus(requestId, "canceled");
+}
+async function getPendingFriendRequests(profileId){
+  const id = normalizeFriendUuid(profileId);
+  if (!id) return friendServiceError("Valid profile id is required", "error");
+  try{
+    const [incoming, outgoing] = await Promise.all([
+      friendRestJson(`friend_requests?select=id,from_profile_id,to_profile_id,status,created_at,updated_at&to_profile_id=eq.${id}&status=eq.pending&order=created_at.desc`),
+      friendRestJson(`friend_requests?select=id,from_profile_id,to_profile_id,status,created_at,updated_at&from_profile_id=eq.${id}&status=eq.pending&order=created_at.desc`)
+    ]);
+    const profileMap = await friendFetchProfilesByIds([].concat(
+      (incoming || []).map(r => r.from_profile_id),
+      (outgoing || []).map(r => r.to_profile_id)
+    ));
+    return friendServiceResult(true, {
+      incoming:(incoming || []).map(request => ({ request, requester:profileMap[String(request.from_profile_id)] || null })),
+      outgoing:(outgoing || []).map(request => ({ request, recipient:profileMap[String(request.to_profile_id)] || null }))
+    });
+  }catch(err){
+    return friendServiceError(err, "error");
+  }
+}
+async function getFriends(profileId){
+  const id = normalizeFriendUuid(profileId);
+  if (!id) return friendServiceError("Valid profile id is required", "error");
+  try{
+    const friendships = await friendRestJson(`accepted_friendships?select=user_a,user_b,created_at&or=(user_a.eq.${id},user_b.eq.${id})&order=created_at.desc`);
+    const friendIds = (friendships || []).map(row => String(row.user_a) === id ? row.user_b : row.user_a).filter(Boolean);
+    const profileMap = await friendFetchProfilesByIds(friendIds);
+    const friends = friendIds.map(friendId => Object.assign({}, profileMap[String(friendId)] || { id:friendId }, {
+      friendship:(friendships || []).find(row => String(row.user_a) === String(friendId) || String(row.user_b) === String(friendId)) || null
+    }));
+    return friendServiceResult(true, friends);
+  }catch(err){
+    return friendServiceError(err, "error");
+  }
+}
+async function getFriendCount(profileId){
+  const id = normalizeFriendUuid(profileId);
+  if (!id) return friendServiceError("Valid profile id is required", "error");
+  try{
+    const rows = await friendRestJson(`profile_friend_counts?select=profile_id,friend_count&profile_id=eq.${id}&limit=1`);
+    const count = Number((Array.isArray(rows) && rows[0] && rows[0].friend_count) || 0);
+    return friendServiceResult(true, { profile_id:id, friend_count:count });
+  }catch(viewErr){
+    try{
+      const rows = await friendRestJson(`accepted_friendships?select=user_a,user_b&or=(user_a.eq.${id},user_b.eq.${id})`);
+      return friendServiceResult(true, { profile_id:id, friend_count:Array.isArray(rows) ? rows.length : 0, fallback:true });
+    }catch(err){
+      return friendServiceError(err, "error");
+    }
+  }
+}
+
+function cachedFriendActionState(targetProfileId){
+  const targetId = normalizeFriendUuid(targetProfileId);
+  if (!targetId) return { state:"unavailable", disabled:true };
+  if (!currentProfile?.id) return { state:"unavailable", disabled:true };
+  const me = normalizeFriendUuid(currentProfile.id);
+  if (!me) return { state:"unavailable", disabled:true };
+  if (me === targetId) return { state:"self", disabled:true };
+  const accepted = getAcceptedFriendIdsForCurrentProfile().map(String);
+  if (accepted.includes(targetId)) return { state:"friends", disabled:true };
+  const incoming = getPendingIncomingFriendRequests().find(req => String(req.from_profile_id || "") === targetId);
+  if (incoming) return { state:"incoming_pending", request_id:incoming.id || "" };
+  const outgoing = getPendingOutgoingFriendRequests().find(req => String(req.to_profile_id || "") === targetId);
+  if (outgoing) return { state:"outgoing_pending", request_id:outgoing.id || "", disabled:true };
+  return { state:"none" };
+}
+function friendActionLabel(state){
+  if (state === "self") return "You";
+  if (state === "none") return "Add Friend";
+  if (state === "outgoing_pending") return "Request Sent";
+  if (state === "incoming_pending") return "Accept";
+  if (state === "friends") return "Friends";
+  if (state === "loading") return "Loading…";
+  return "Unavailable";
+}
+function renderFriendActionButton(targetProfileId, preset){
+  const targetId = normalizeFriendUuid(targetProfileId);
+  const info = preset || cachedFriendActionState(targetId);
+  const state = info.state || "unavailable";
+  if (state === "self") return `<span class="friend-action-btn self" aria-label="This is you">You</span>`;
+  const disabled = info.disabled || state === "friends" || state === "outgoing_pending" || state === "unavailable" || state === "error";
+  const cls = state === "none" ? "add" : state === "incoming_pending" ? "accept" : state === "outgoing_pending" ? "sent" : state === "friends" ? "friends" : "unavailable";
+  return `<button type="button" class="friend-action-btn ${cls}" data-friend-target="${escapeHtml(targetId)}" data-friend-request="${escapeHtml(String(info.request_id || ""))}" data-friend-state="${escapeHtml(state)}" ${disabled ? "disabled" : ""} onclick="event.stopPropagation(); return handleFriendActionButton(this)">${escapeHtml(friendActionLabel(state))}</button>`;
+}
+async function handleFriendActionButton(btn){
+  if (!btn) return false;
+  const targetId = normalizeFriendUuid(btn.getAttribute("data-friend-target"));
+  const requestId = normalizeFriendUuid(btn.getAttribute("data-friend-request"));
+  const priorState = btn.getAttribute("data-friend-state") || "unavailable";
+  if (!currentProfile?.id || !targetId){
+    if (typeof showToast === "function") showToast("Create a profile first");
+    return false;
+  }
+  btn.disabled = true;
+  btn.classList.add("loading");
+  btn.textContent = friendActionLabel("loading");
+  let result = null;
+  if (priorState === "none") {
+    result = await sendFriendRequest(currentProfile.id, targetId);
+  } else if (priorState === "incoming_pending" && requestId) {
+    result = await acceptFriendRequest(requestId);
+  } else {
+    result = { ok:false, error:"No friend action available", state:priorState };
+  }
+  if (result?.ok){
+    await loadFriendBackendData();
+    renderNetworkTab();
+    if (currentProfile) renderProfileDashboard();
+    if (typeof refreshNotifDot === "function") refreshNotifDot();
+    if (typeof showToast === "function") showToast(result.state === "friends" ? "Friend added" : "Friend request sent");
+  } else {
+    btn.disabled = false;
+    btn.classList.remove("loading");
+    btn.textContent = friendActionLabel(priorState);
+    if (typeof showToast === "function") showToast("Friend action unavailable");
+  }
+  return false;
+}
+
 function mockFriendPool(){
   return [
     {name:"Sarah Klein", hood:"Santa Monica", initials:"SK", photo:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80", action:"RSVP’d to", comment:"I’m in — this looks like a great crowd.", eventIndex:0},
@@ -4745,6 +5364,7 @@ function renderNetworkTab(){
           <div style="flex:1;min-width:0;">
             <div class="network-highlight-name">${escapeHtml(leadProfile.name || "Friend")} is in your network</div>
             <div class="network-highlight-meta">${escapeHtml((leadEvent?.location || currentProfile?.neighborhood || "Los Angeles"))} · ${summary.friendCount} total friends connected</div>
+            <div class="network-chiprow">${renderFriendActionButton(leadProfile.id, { state:"friends", disabled:true })}</div>
           </div>
         </div>`;
     } else if (summary.incoming.length) {
@@ -4773,7 +5393,7 @@ function renderNetworkTab(){
                 <div class="network-chip">Pending</div>
                 <div class="network-chip">Friend request</div>
               </div>
-              <a href="#" class="network-event-link" onclick="return acceptFriendRequestById('${escapeHtml(String(req.id || ""))}')">Accept request ↗</a>
+              ${renderFriendActionButton(req.from_profile_id, { state:"incoming_pending", request_id:req.id || "" })}
             </div>
           </div>
         </div>`;
@@ -4791,6 +5411,7 @@ function renderNetworkTab(){
               <div class="network-chiprow">
                 <div class="network-chip">Pending</div>
                 <div class="network-chip">Outgoing</div>
+                ${renderFriendActionButton(req.to_profile_id, { state:"outgoing_pending", request_id:req.id || "", disabled:true })}
               </div>
             </div>
           </div>
@@ -4809,6 +5430,7 @@ function renderNetworkTab(){
               <div class="network-chiprow">
                 <div class="network-chip">Friends</div>
                 <div class="network-chip">${summary.friendCount} total</div>
+                ${renderFriendActionButton(p.id, { state:"friends", disabled:true })}
               </div>
               ${e?.rsvp_link ? `<a class="network-event-link" href="${escapeHtml(e.rsvp_link)}" target="_blank" rel="noopener">Open event ↗</a>` : ``}
             </div>
@@ -4828,6 +5450,7 @@ function renderNetworkTab(){
               <div class="network-chiprow">
                 <div class="network-chip">Live friend graph</div>
                 <div class="network-chip">Backend connected</div>
+                ${renderFriendActionButton(p.id, { state:"friends", disabled:true })}
               </div>
             </div>
           </div>
@@ -7116,6 +7739,8 @@ function normalizePossibleEventUrl(rawUrl){
 function candidateEventLinks(event){
   const rawCandidates = [
     event?.rsvp_link,
+    event?.rsvp_url,
+    event?.link,
     event?.public_event_url,
     event?.event_url,
     event?.google_event_url,
@@ -7139,128 +7764,171 @@ function candidateEventLink(event){
   return candidateEventLinks(event)[0] || '';
 }
 function buildLinkPreviewCandidates(url){
-  return [];
+  const cleaned = normalizePossibleEventUrl(url);
+  return cleaned ? [
+    `https://api.microlink.io/?url=${encodeURIComponent(cleaned)}&audio=false&video=false&screenshot=false&palette=false&meta=false`,
+    `https://jsonlink.io/api/extract?url=${encodeURIComponent(cleaned)}`
+  ] : [];
 }
 function buildLinkPreviewImage(url){
   return '';
 }
+function isValidEventImageUrl(value){
+  const url = decodeMaybeUrl(value || '').replace(/&amp;/g,'&').trim();
+  if (!/^https?:\/\//i.test(url)) return false;
+  if (/\b(1x1|pixel|tracking|tracker|spacer|blank|transparent)\b/i.test(url)) return false;
+  if (/sprite|favicon|gravatar/i.test(url)) return false;
+  if (/\.(svg|gif)(\?|$)/i.test(url)) return false;
+  return true;
+}
+function normalizeEventImageUrl(value){
+  const url = decodeMaybeUrl(value || '').replace(/&amp;/g,'&').trim();
+  return isValidEventImageUrl(url) ? url : '';
+}
+function eventImageCacheKeys(event){
+  return Array.from(new Set([
+    event?.id ? String(event.id) : '',
+    candidateEventLink(event),
+    event?.rsvp_link,
+    event?.rsvp_url,
+    event?.link,
+    event?.public_event_url,
+    event?.event_url,
+    event?.url
+  ].map(v => String(v || '').trim()).filter(Boolean)));
+}
+function readCachedEventImage(event){
+  const cache = readEventImageCache();
+  for (const key of eventImageCacheKeys(event)){
+    const value = cache[key];
+    const src = normalizeEventImageUrl(typeof value === 'string' ? value : value?.src);
+    if (src) return { ok:true, src, source:value?.source || 'event_link_og' };
+  }
+  return null;
+}
+function writeResolvedEventImage(event, result){
+  if (!result?.src || result.source === 'fallback') return;
+  const cache = readEventImageCache();
+  eventImageCacheKeys(event).forEach(key => { cache[key] = { src:result.src, source:result.source || 'event_link_og' }; });
+  writeEventImageCache();
+}
+function getEventFieldImage(event){
+  const fields = [
+    event?.image,
+    event?.image_url,
+    event?.photo_url,
+    event?.hero_image,
+    event?.thumbnail
+  ];
+  for (const field of fields){
+    const src = normalizeEventImageUrl(field);
+    if (src) return src;
+  }
+  return '';
+}
+function getSearchImageForEvent(event){
+  const fallback = fallbackImage(event?.category || event?.title || event?.id);
+  return {
+    ok:false,
+    src:fallback,
+    source:'fallback',
+    error:'No reliable backend image-search endpoint is available in this static frontend.'
+  };
+}
+function resolveEventImage(event){
+  const fallback = fallbackImage(event?.category || event?.title || event?.id);
+  const fieldImage = getEventFieldImage(event);
+  if (fieldImage) return { ok:true, src:fieldImage, source:'event_field' };
+  const cached = readCachedEventImage(event);
+  if (cached?.src) return cached;
+  const search = getSearchImageForEvent(event);
+  if (search?.ok && normalizeEventImageUrl(search.src)) return { ok:true, src:search.src, source:'search' };
+  return { ok:false, src:fallback, source:'fallback', error:search?.error || 'No event image available' };
+}
 function getEventImageSources(event){
   const sources = [];
   const seen = new Set();
-  const push = (value, label = '') => {
-    const normalized = decodeMaybeUrl(value || '').replace(/&amp;/g,'&').trim();
+  const push = (value) => {
+    const normalized = normalizeEventImageUrl(value);
     if (!normalized || seen.has(normalized)) return;
     seen.add(normalized);
     sources.push(normalized);
-    if (label && normalized) {}
   };
-  
-  
-  // CRITICAL: ALWAYS PRIORITIZE SUPABASE image_url FIELD FIRST
-  // This is the actual event image from the database
-  
-  
-  if (event?.image_url) {
-    const imgUrl = event.image_url;
-    // Only skip if it's explicitly an Unsplash placeholder
-    if (!imgUrl.includes('unsplash.com/photo') && !imgUrl.includes('placeholder')) {
-      push(imgUrl, '🎯 PRIORITY: Supabase image_url');
-}
+  const resolved = resolveEventImage(event);
+  push(resolved.src);
+  const fallback = fallbackImage(event?.category || event?.title || event?.id);
+  if (resolved.source !== 'event_field') {
+    push(getEventFieldImage(event));
   }
-  
-  // SECONDARY: Check cache
-  const cache = readEventImageCache();
-  if (cache[event?.id]) {
-    push(cache[event.id], 'Cached image');
-  }
-  
-  // TERTIARY: Try event platform specific image patterns
-  const eventUrls = [
-    event?.rsvp_link,
-    event?.public_event_url,
-    event?.event_url,
-    event?.google_event_url,
-    event?.source_url,
-    event?.url
-  ].filter(Boolean);
-  
-  // Platform-specific image extraction
-  eventUrls.forEach(url => {
-    if (!url || !url.includes('http')) return;
-    
-    const urlLower = url.toLowerCase();
-    
-    // Eventbrite - they have a predictable image URL pattern
-    if (urlLower.includes('eventbrite')) {
-      const ebMatch = url.match(/events\/(\d+)/);
-      if (ebMatch) {
-        push(`https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F${ebMatch[1]}%2F`, 'Eventbrite pattern');
-      }
-    }
-    
-    // Partiful - use their OG image
-    if (urlLower.includes('partiful.com')) {
-      push(`https://partiful.com/og-image?url=${encodeURIComponent(url)}`, 'Partiful OG');
-    }
-    
-    // Lu.ma - they have good OG images
-    if (urlLower.includes('lu.ma')) {
-      const luMatch = url.match(/lu\.ma\/([^/?]+)/);
-      if (luMatch) {
-        push(`https://lu.ma/og/${luMatch[1]}`, 'Lu.ma OG');
-      }
-    }
-    
-    // Facebook events
-    if (urlLower.includes('facebook.com/events')) {
-      const fbMatch = url.match(/events\/(\d+)/);
-      if (fbMatch) {
-        push(`https://graph.facebook.com/${fbMatch[1]}/picture?type=large`, 'Facebook event');
-      }
-    }
-    
-    // For all URLs, try Microlink screenshot as fallback (but lower priority)
-    push(`https://api.microlink.io/screenshot?url=${encodeURIComponent(url)}&type=jpeg&overlay.browser=false&waitForTimeout=2000`, 'Screenshot');
-  });
-  
-  // QUATERNARY: Category-based placeholder (only as last resort)
-  push(fallbackImage(event?.category), 'Category fallback');
-  
-  if (sources.length > 0) {
-
-} else {
-}
-  
-  return sources;
+  const cached = readCachedEventImage(event);
+  if (cached?.src) push(cached.src);
+  push(fallback);
+  return sources.length ? sources : [fallback];
 }
 function getEventCardImage(event){
-  return getEventImageSources(event)[0] || fallbackImage(event?.category);
+  return resolveEventImage(event).src || fallbackImage(event?.category || event?.title || event?.id);
+}
+function updateResolvedEventImagesInDom(event, src){
+  const id = String(event?.id || '');
+  const cacheKey = eventImageCacheKeys(event)[0] || '';
+  if (!id && !cacheKey) return;
+  document.querySelectorAll('img[data-event-image-id],img[data-event-image-key]').forEach(img => {
+    if (!img || img.dataset.imageSource === 'event_field') return;
+    if (id && img.dataset.eventImageId !== id && cacheKey && img.dataset.eventImageKey !== cacheKey) return;
+    if (id && img.dataset.eventImageId !== id && !cacheKey) return;
+    if (!id && cacheKey && img.dataset.eventImageKey !== cacheKey) return;
+    img.src = src;
+    const fallbacks = getEventImageSources(event).filter(item => item !== src).join('||');
+    img.dataset.fallbackSrcs = fallbacks;
+    img.dataset.imageSource = 'event_link_og';
+  });
+}
+function requestEventLinkImage(event){
+  const resolved = resolveEventImage(event);
+  if (resolved.source !== 'fallback') return;
+  if (!candidateEventLinks(event).length) return;
+  const key = eventImageCacheKeys(event)[0];
+  requestEventLinkImage.inFlight = requestEventLinkImage.inFlight || {};
+  requestEventLinkImage.missed = requestEventLinkImage.missed || {};
+  if (!key || requestEventLinkImage.inFlight[key] || requestEventLinkImage.missed[key]) return;
+  requestEventLinkImage.inFlight[key] = true;
+  setTimeout(async () => {
+    try{
+      const src = await resolveEventImageFromLink(event);
+      const normalized = normalizeEventImageUrl(src);
+      if (normalized){
+        writeResolvedEventImage(event, { ok:true, src:normalized, source:'event_link_og' });
+        updateResolvedEventImagesInDom(event, normalized);
+      } else {
+        requestEventLinkImage.missed[key] = true;
+      }
+    }catch(err){
+      requestEventLinkImage.missed[key] = true;
+    }
+    finally{ delete requestEventLinkImage.inFlight[key]; }
+  }, 0);
 }
 function renderEventImageTag(event, className, extraAttrs){
+  const resolved = resolveEventImage(event);
   const sources = getEventImageSources(event);
-  const primary = sources[0] || fallbackImage(event?.category);
-  const fallbackChain = sources.slice(1).join('||');
-  return `<img class="${escapeHtml(className || 'image')}" src="${escapeHtml(primary)}" data-fallback-srcs="${escapeHtml(fallbackChain)}" onerror="handleEventImgError(this)" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer" crossorigin="anonymous" ${extraAttrs || ''}>`;
+  const primary = resolved.src || sources[0] || fallbackImage(event?.category || event?.title || event?.id);
+  const fallbackChain = sources.filter(src => src && src !== primary).join('||');
+  requestEventLinkImage(event);
+  return `<img class="${escapeHtml(className || 'image')}" src="${escapeHtml(primary)}" data-event-image-id="${escapeHtml(String(event?.id || ''))}" data-event-image-key="${escapeHtml(eventImageCacheKeys(event)[0] || '')}" data-image-source="${escapeHtml(resolved.source || 'fallback')}" data-fallback-srcs="${escapeHtml(fallbackChain)}" onerror="handleEventImgError(this)" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer" crossorigin="anonymous" ${extraAttrs || ''}>`;
 }
 function handleEventImgError(img){
   if (!img) return;
-  const remaining = String(img.dataset.fallbackSrcs || '').split('||').filter(Boolean);
-  if (!remaining.length){
-    img.onerror = null;
+  const remaining = String(img.dataset.fallbackSrcs || '').split('||').map(normalizeEventImageUrl).filter(Boolean);
+  const next = remaining.shift();
+  if (next){
+    img.dataset.fallbackSrcs = remaining.join('||');
+    img.src = next;
     return;
   }
-  const next = remaining.shift();
-  img.dataset.fallbackSrcs = remaining.join('||');
-  // Some preview services reject hotlinking unless referrer/crossorigin are absent.
-  if (/mshots|thum\.io|s-shot|microlink/i.test(next)) {
-    img.removeAttribute('crossorigin');
-    img.referrerPolicy = 'origin-when-cross-origin';
-  }
-  
-  if (next && /^https?:\/\//i.test(next)) {
-    img.src = next;
-  } else {
+  const hardFallback = fallbackImage(img.dataset.eventImageId || img.dataset.eventImageKey || 'event');
+  if (img.src !== hardFallback){
     img.onerror = null;
+    img.src = hardFallback;
   }
 }
 async function fetchTextThroughProxy(url){
@@ -7303,12 +7971,6 @@ async function fetchImageViaMetadataApis(url){
       url: `https://jsonlink.io/api/extract?url=${encodeURIComponent(cleaned)}`,
       pick: (json) => json?.images?.[0] || json?.image || json?.thumbnail || '',
       priority: 2
-    },
-    // OpenGraph.io as backup (free tier)
-    {
-      url: `https://opengraph.io/api/1.1/site/${encodeURIComponent(cleaned)}?app_id=free`,
-      pick: (json) => json?.hybridGraph?.image || json?.openGraph?.image?.url || '',
-      priority: 3
     }
   ];
   
@@ -7424,7 +8086,8 @@ async function resolveEventImageFromLink(event){
   if (!sourceLinks.length) return '';
   const cacheKey = String(event?.id || sourceLinks[0]);
   const cache = readEventImageCache();
-  if (cache[cacheKey]) return cache[cacheKey];
+  const cached = readCachedEventImage(event);
+  if (cached?.src) return cached.src;
   for (const sourceLink of sourceLinks.slice(0, 8)){
     let image = '';
     const html = await fetchTextThroughProxy(sourceLink);
@@ -7442,8 +8105,9 @@ async function resolveEventImageFromLink(event){
         if (image) break;
       }
     }
+    image = normalizeEventImageUrl(image);
     if (image){
-      cache[cacheKey] = image;
+      cache[cacheKey] = { src:image, source:'event_link_og' };
       writeEventImageCache();
       return image;
     }
@@ -7468,14 +8132,14 @@ return false;
   // Events that need images - prioritize visible cards
   const eventsNeedingImages = allEvents
     .filter(e => {
-      // Skip if already has a good image
-      if (e.image_url && !e.image_url.includes('unsplash.com') && !e.image_url.includes('placeholder')) {
+      // Skip if already has a valid first-party event image.
+      if (getEventFieldImage(e)) {
         return false;
       }
-      // Skip if we already tried and cached a result
-      if (cache[e.id]) {
-        // Use cached image
-        e.image_url = cache[e.id];
+      // Skip if we already resolved and cached an event-link image.
+      const cached = readCachedEventImage(e);
+      if (cached?.src) {
+        e.image_url = cached.src;
         return false;
       }
       return true;
@@ -7497,23 +8161,17 @@ let successCount = 0;
       try {
         const resolvedImage = await resolveEventImageFromLink(event);
         
-        if (resolvedImage && resolvedImage.length > 10) {
+        const normalizedImage = normalizeEventImageUrl(resolvedImage);
+        if (normalizedImage) {
           // SUCCESS! Update the event object
-          event.image_url = resolvedImage;
+          event.image_url = normalizedImage;
           
           // Cache it
-          cache[event.id] = resolvedImage;
+          cache[event.id] = { src:normalizedImage, source:'event_link_og' };
           writeEventImageCache();
           
           successCount++;
-// Update the DOM immediately if card is visible
-          const cardImgs = document.querySelectorAll(`[onclick*="openEventModal('${event.id}')"] img.image, [data-event-id="${event.id}"] img.image`);
-          cardImgs.forEach(img => {
-            const oldSrc = img.src;
-            if (oldSrc.includes('unsplash.com') || oldSrc.includes('placeholder')) {
-              img.src = resolvedImage;
-}
-          });
+          updateResolvedEventImagesInDom(event, normalizedImage);
         } else {
           failCount++;
 }
