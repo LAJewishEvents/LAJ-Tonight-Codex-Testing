@@ -92,6 +92,10 @@ begin
     raise exception 'cannot send a friend request to yourself' using errcode = '23514';
   end if;
 
+  if auth.uid() is distinct from p_from_profile_id then
+    raise exception 'caller must own from_profile_id' using errcode = '42501';
+  end if;
+
   perform 1 from public.profiles p where p.id = p_from_profile_id;
   if not found then
     raise exception 'from_profile_id does not exist' using errcode = '23503';
@@ -207,6 +211,10 @@ begin
     return;
   end if;
 
+  if auth.uid() is distinct from v_request.to_profile_id then
+    raise exception 'caller must own request recipient profile' using errcode = '42501';
+  end if;
+
   v_user_a := least(v_request.from_profile_id, v_request.to_profile_id);
   v_user_b := greatest(v_request.from_profile_id, v_request.to_profile_id);
 
@@ -255,6 +263,14 @@ begin
   if not found then
     return query select false, p_request_id, 'not_pending_or_missing'::text;
     return;
+  end if;
+
+  if p_status = 'declined' and auth.uid() is distinct from v_request.to_profile_id then
+    raise exception 'caller must own request recipient profile' using errcode = '42501';
+  end if;
+
+  if p_status = 'canceled' and auth.uid() is distinct from v_request.from_profile_id then
+    raise exception 'caller must own request sender profile' using errcode = '42501';
   end if;
 
   update public.friend_requests fr
@@ -315,6 +331,10 @@ declare
 begin
   if p_inviter_profile_id is null then
     raise exception 'inviter profile id is required' using errcode = '22004';
+  end if;
+
+  if auth.uid() is distinct from p_inviter_profile_id then
+    raise exception 'caller must own inviter profile' using errcode = '42501';
   end if;
 
   perform 1 from public.profiles p where p.id = p_inviter_profile_id;
@@ -429,9 +449,9 @@ grant select on public.friend_requests to anon, authenticated;
 grant select on public.accepted_friendships to anon, authenticated;
 grant select on public.profile_friend_counts to anon, authenticated;
 
-grant execute on function public.send_friend_request(uuid, uuid) to anon, authenticated;
-grant execute on function public.accept_friend_request(uuid) to anon, authenticated;
-grant execute on function public.decline_friend_request(uuid) to anon, authenticated;
-grant execute on function public.cancel_friend_request(uuid) to anon, authenticated;
-grant execute on function public.create_invite_link(uuid) to anon, authenticated;
+grant execute on function public.send_friend_request(uuid, uuid) to authenticated;
+grant execute on function public.accept_friend_request(uuid) to authenticated;
+grant execute on function public.decline_friend_request(uuid) to authenticated;
+grant execute on function public.cancel_friend_request(uuid) to authenticated;
+grant execute on function public.create_invite_link(uuid) to authenticated;
 grant execute on function public.resolve_invite_link(text) to anon, authenticated;
